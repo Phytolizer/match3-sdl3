@@ -23,6 +23,7 @@ auto loadTexture(SDL_Renderer* renderer, std::filesystem::path const& path) -> s
             static_cast<int>(desc.width), static_cast<int>(desc.height)
     );
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
     SDL_UpdateTexture(texture, nullptr, raw_pixels, static_cast<int>(desc.width * 4));
     std::free(raw_pixels);
     return {sdl::Texture{texture}, static_cast<int>(desc.width), static_cast<int>(desc.height)};

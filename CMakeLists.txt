@@ -71,6 +71,7 @@ target_sources(match3 PRIVATE
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}"
     FILES
+    mdspan_ext.hh
     qoi_texture.hh
     EnumMap.hh
     Game.hh

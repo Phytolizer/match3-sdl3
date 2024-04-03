@@ -16,7 +16,8 @@ struct Gem {
         Purple,
     };
 
-    Color color;
+    Color color = Color::None;
+    bool in_match = false;
 
     template <typename Rng>
     static Color randomColor(Rng& rng) {
