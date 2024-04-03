@@ -42,6 +42,8 @@ void Game::draw() {
     SDL_SetRenderDrawColor(_renderer.get(), 0, 0, 0, 255);
     SDL_RenderClear(_renderer.get());
 
+    // TODO: center grid
+    // TODO: scale grid dynamically
     ranges::for_each(_field.indices(), [this](auto index) {
         auto [r, c] = index;
         auto color = _field.gems(r, c);
