@@ -125,3 +125,6 @@ CTestTestfile.cmake
 _deps
 
 *.png
+
+build/
+.cache/
