@@ -76,6 +76,7 @@ target_sources(match3 PRIVATE
     EnumMap.hh
     Game.hh
     Gem.hh
+    MatchData.hh
     PlayField.hh
     SDLwrap.hh
     Xoshiro256ss.hh

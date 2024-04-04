@@ -1,5 +1,7 @@
 #pragma once
 
+#include "MatchData.hh"
+
 #include <SDL3/SDL_pixels.h>
 #include <magic_enum.hpp>
 #include <random>
@@ -17,7 +19,7 @@ struct Gem {
     };
 
     Color color = Color::None;
-    bool in_match = false;
+    MatchData match;
 
     template <typename Rng>
     static Color randomColor(Rng& rng) {
