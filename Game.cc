@@ -64,21 +64,21 @@ void Game::update(Uint64 dt_ns) {
         }
         auto horizontal_match = ranges::views::take_while(
                 ranges::views::iota(c, _field.width()),
-                [this, r, root](auto c2) { return _field.gems(r, c2).color == root.color; }
+                [this, &r, root](auto c2) { return _field.gems(r, c2).color == root.color; }
         );
         auto vertical_match = ranges::views::take_while(
                 ranges::views::iota(r, _field.height()),
-                [this, c, root](auto r2) { return _field.gems(r2, c).color == root.color; }
+                [this, &c, root](auto r2) { return _field.gems(r2, c).color == root.color; }
         );
         auto horizontal_length = ranges::distance(horizontal_match);
         if (horizontal_length >= 3) {
-            ranges::for_each(ranges::views::iota(c, c + horizontal_length), [this, r](auto c2) {
+            ranges::for_each(ranges::views::iota(c, c + horizontal_length), [this, &r](auto c2) {
                 _field.gems(r, c2).in_match = true;
             });
         }
         auto vertical_length = ranges::distance(vertical_match);
         if (vertical_length >= 3) {
-            ranges::for_each(ranges::views::iota(r, r + vertical_length), [this, c](auto r2) {
+            ranges::for_each(ranges::views::iota(r, r + vertical_length), [this, &c](auto r2) {
                 _field.gems(r2, c).in_match = true;
             });
         }
