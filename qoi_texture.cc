@@ -2,6 +2,7 @@
 
 #include <cmrc/cmrc.hpp>
 #include <fstream>
+#include <qoi.h>
 #include <range/v3/algorithm/copy.hpp>
 #include <span>
 #include <spdlog/spdlog.h>
