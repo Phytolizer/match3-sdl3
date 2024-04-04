@@ -25,7 +25,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang-16, cl]
+        c_compiler: [gcc, clang-17, cl]
         include:
           - os: windows-latest
             c_compiler: cl
@@ -36,25 +36,26 @@ jobs:
             cpp_compiler: g++
             cpp_flags: ''
           - os: ubuntu-latest
-            c_compiler: clang-16
-            cpp_compiler: clang++-16
+            c_compiler: clang-17
+            cpp_compiler: clang++-17
             cpp_flags: '-stdlib=libc++'
         exclude:
           - os: windows-latest
             c_compiler: gcc
           - os: windows-latest
-            c_compiler: clang-16
+            c_compiler: clang-17
           - os: ubuntu-latest
             c_compiler: cl
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install clang-16
-      if: matrix.c_compiler == 'clang-16'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y clang-16
+    - name: Set up Clang
+      if: matrix.c_compiler == 'clang-17'
+      uses: egor-tensin/setup-clang@v1
+      with:
+        version: 17
+        platform: x64
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
