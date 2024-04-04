@@ -57,7 +57,7 @@ fetchcontent_makeavailable(qoi_h)
 
 file(GENERATE
     OUTPUT qoi.c
-    CONTENT "#define QOI_IMPLEMENTATION\n#include \"qoi.h\"\n"
+    CONTENT "#define QOI_IMPLEMENTATION\n#define QOI_NO_STDIO\n#include \"qoi.h\"\n"
 )
 
 add_library(qoi qoi.c)
@@ -66,7 +66,7 @@ add_library(qoi::qoi ALIAS qoi)
 
 add_subdirectory(assets)
 
-add_executable(match3 main.cc)
+add_executable(match3 WIN32 main.cc)
 target_sources(match3 PRIVATE
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}"
