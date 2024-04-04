@@ -95,3 +95,9 @@ target_link_libraries(match3 PRIVATE
     range-v3::range-v3
     std::mdspan
 )
+
+add_custom_command(TARGET match3 POST_BUILD
+    COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+        $<TARGET_RUNTIME_DLLS:match3>
+        $<TARGET_FILE_DIR:match3>
+)

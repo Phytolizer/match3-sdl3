@@ -14,7 +14,7 @@ auto loadTexture(SDL_Renderer* renderer, std::filesystem::path const& path) -> s
     spdlog::info("load {}", path.string());
     auto fs = cmrc::assets::get_filesystem();
     auto qoi_data = std::vector<char>{};
-    auto file = fs.open(path.string());
+    auto file = fs.open(path.generic_string());
     qoi_data.resize(file.size());
     ranges::copy(file, qoi_data.begin());
     auto desc = qoi_desc{};
