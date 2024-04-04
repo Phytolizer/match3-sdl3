@@ -16,7 +16,7 @@ public:
 
     V& operator[](E key) { return _data[magic_enum::enum_integer(key)]; }
 
-    using iterator = Data::iterator;
+    using iterator = typename Data::iterator;
     iterator begin() { return _data.begin(); }
     iterator end() { return _data.end(); }
 };
