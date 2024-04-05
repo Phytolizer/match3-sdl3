@@ -97,8 +97,15 @@ target_link_libraries(match3 PRIVATE
     std::mdspan
 )
 
-add_custom_command(TARGET match3 POST_BUILD
-    COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+set(have_runtime_dlls
+    $<BOOL:$<TARGET_RUNTIME_DLLS:match3>>
+)
+set(copy_dll_cmd
+    "${CMAKE_COMMAND}" -E copy_if_different
         $<TARGET_RUNTIME_DLLS:match3>
         $<TARGET_FILE_DIR:match3>
+)
+add_custom_command(TARGET match3 POST_BUILD
+    COMMAND "$<${have_runtime_dlls}:${copy_dll_cmd}>"
+    COMMAND_EXPAND_LISTS
 )
